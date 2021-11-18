@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ThemeDataLight {
-  static ThemeData getThemeData() {
+  static ThemeData get themeData {
     return ThemeData(
       colorScheme: const ColorScheme.light(
         surface: Colors.white,
