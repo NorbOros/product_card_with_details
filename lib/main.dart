@@ -17,11 +17,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Devlogie Product',
       home: const HomeScreen(),
-      theme: ThemeDataLight.themeData,
+      theme: ThemeDataLight.getThemeData(),
       routes: {
         HomeScreen.routeName: (context) => const HomeScreen(),
-        ProductDetailsScreen.routeName: (context) =>
-            const ProductDetailsScreen(),
+        ProductDetailsScreen.routeName: (context) => ProductDetailsScreen(),
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(builder: (ctx) => const ErrorScreen());

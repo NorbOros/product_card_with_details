@@ -24,18 +24,6 @@ class BehindSliderWidget extends StatelessWidget {
                   alignment: Alignment.topCenter,
                   child: Image.asset('assets/images/moisturizer.jpg'),
                 ),
-                ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      height: 150,
-                      width: 150,
-                      color: Colors.blueAccent,
-                      child: Text('asd'),
-                    );
-                  },
-                  itemCount: 3,
-                ),
               ],
             );
           },

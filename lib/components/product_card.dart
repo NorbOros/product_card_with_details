@@ -9,7 +9,6 @@ class ProductCard extends StatelessWidget {
   final Product _product = Product(
       name: 'Moisturizer',
       description: 'Oil balancing mask with some really long description',
-      currency: '\$',
       price: 11.99,
       imageUrl: 'assets/images/moisturizer.jpg');
 
@@ -23,13 +22,11 @@ class ProductCard extends StatelessWidget {
           onTap: () => _navigateTo(context, ProductDetailsScreen.routeName),
           child: Card(
             elevation: 8,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
             color: DevlogieColors.white,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Image.asset(
                   _product.imageUrl,
@@ -37,15 +34,13 @@ class ProductCard extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0),
-                  child: Text(_product.name,
-                      style: Theme.of(context).textTheme.headline1),
+                  child: Text(_product.name),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
                     _product.description,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodyText1,
                   ),
                 ),
                 Padding(
@@ -53,10 +48,7 @@ class ProductCard extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        _product.currency + _product.price.toString(),
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ),
+                      Text(_product.price.toString()),
                       IconButton(
                         onPressed: () {},
                         icon: const Icon(Icons.shopping_bag_outlined),
@@ -72,7 +64,7 @@ class ProductCard extends StatelessWidget {
     );
   }
 
-  _navigateTo(BuildContext context, String routeName) {
+  void _navigateTo(BuildContext context, String routeName) {
     Navigator.of(context).pushNamed(routeName);
   }
 }

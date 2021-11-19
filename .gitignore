@@ -22,3 +22,7 @@ doc/api/
 /.flutter-plugins
 /.flutter-plugins-dependencies
 /analysis_options.yaml
+android/*
+ios/*
+build/*
+web/*
