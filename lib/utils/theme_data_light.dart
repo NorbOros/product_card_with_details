@@ -10,16 +10,22 @@ class ThemeDataLight {
       ),
       fontFamily: GoogleFonts.montserrat().fontFamily,
       textTheme: ThemeData.light().textTheme.copyWith(
-          headline1: const TextStyle(
-            color: DevlogieColors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.w400,
+            headline1: const TextStyle(
+              color: DevlogieColors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.w400,
+            ),
+            bodyText1: const TextStyle(
+              color: DevlogieColors.black,
+              fontSize: 14,
+              fontWeight: FontWeight.w300,
+            ),
+            bodyText2: const TextStyle(
+              color: DevlogieColors.grey,
+              fontSize: 12,
+              fontWeight: FontWeight.w200,
+            ),
           ),
-          bodyText1: const TextStyle(
-            color: DevlogieColors.black,
-            fontSize: 14,
-            fontWeight: FontWeight.w300,
-          )),
     );
   }
 }

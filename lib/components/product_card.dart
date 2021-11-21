@@ -10,6 +10,7 @@ class ProductCard extends StatelessWidget {
       name: 'Moisturizer',
       description: 'Oil balancing mask with some really long description',
       price: 11.99,
+      currency: '\$',
       imageUrl: 'assets/images/moisturizer.jpg');
 
   @override
@@ -21,37 +22,52 @@ class ProductCard extends StatelessWidget {
         child: GestureDetector(
           onTap: () => _navigateTo(context, ProductDetailsScreen.routeName),
           child: Card(
+            semanticContainer: true,
+            clipBehavior: Clip.antiAliasWithSaveLayer,
             elevation: 8,
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
             color: DevlogieColors.white,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.asset(
                   _product.imageUrl,
-                  fit: BoxFit.fill,
+                  fit: BoxFit.contain,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Text(_product.name),
+                  padding: const EdgeInsets.only(left: 15.0),
+                  child: Text(
+                    _product.name,
+                    style: Theme.of(context).textTheme.headline1,
+                  ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(left: 15.0),
                   child: Text(
                     _product.description,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  padding:
+                      const EdgeInsets.only(left: 15.0, top: 15.0, right: 15.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(_product.price.toString()),
-                      IconButton(
+                      Text(
+                        _product.currency + _product.price.toString(),
+                        style: Theme.of(context).textTheme.headline1,
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: DevlogieColors.black,
+                          elevation: 8,
+                          shape: const StadiumBorder(),
+                          fixedSize: const Size(45, 40),
+                        ),
+                        child: const Icon(Icons.shopping_bag_outlined),
                         onPressed: () {},
-                        icon: const Icon(Icons.shopping_bag_outlined),
                       ),
                     ],
                   ),

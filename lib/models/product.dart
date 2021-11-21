@@ -2,16 +2,19 @@ class Product {
   final String _name;
   final String _description;
   final double _price;
+  final String _currency;
   final String _imageUrl;
 
   Product(
       {required final String name,
       required final String description,
       required final double price,
+      required final String currency,
       required final String imageUrl})
       : _name = name,
         _description = description,
         _price = price,
+        _currency = currency,
         _imageUrl = imageUrl;
 
   String get name {
@@ -28,5 +31,9 @@ class Product {
 
   String get imageUrl {
     return _imageUrl;
+  }
+
+  String get currency {
+    return _currency; 
   }
 }
