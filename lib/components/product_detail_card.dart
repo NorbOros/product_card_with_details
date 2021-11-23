@@ -22,17 +22,17 @@ class ProductDetailCard extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                fit: BoxFit.fitHeight,
+                fit: BoxFit.scaleDown,
                 image: AssetImage('assets/icons/leaf.png'),
               ),
               borderRadius: BorderRadius.all(
                 Radius.circular(15),
               ),
             ),
-            child: Text(
-              _title,
-              style: Theme.of(context).textTheme.bodyText2,
-            ),
+          ),
+          Text(
+            _title,
+            style: Theme.of(context).textTheme.bodyText2,
           ),
         ],
       ),

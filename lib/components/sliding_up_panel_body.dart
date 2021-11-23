@@ -35,7 +35,7 @@ class SlidingUpPanelBody extends StatelessWidget {
           }).toList(),
         ),
         Positioned(
-          top: _size.height * 0.44,
+          top: _size.height * 0.42,
           right: 10,
           left: 10,
           child: Row(

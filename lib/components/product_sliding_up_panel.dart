@@ -20,10 +20,18 @@ class ProductSlidingUpPanel extends StatefulWidget {
 class _ProductSlidingUpPanelState extends State<ProductSlidingUpPanel> {
   int _productCount = 1;
 
-  void _incrementCounter() {
-    setState() {
+  void _increment() {
+    setState(() {
       _productCount++;
-    }
+    });
+  }
+
+  void _decrement() {
+    setState(() {
+      if (_productCount > 1) {
+        _productCount--;
+      }
+    });
   }
 
   @override
@@ -33,94 +41,81 @@ class _ProductSlidingUpPanelState extends State<ProductSlidingUpPanel> {
     return SlidingUpPanel(
       panel: Padding(
         padding: const EdgeInsets.all(25.0),
-        child: Table(
-          columnWidths: const <int, TableColumnWidth>{
-            0: IntrinsicColumnWidth(),
-            1: FlexColumnWidth(),
-            2: FixedColumnWidth(100.0),
-          },
-          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-          children: <TableRow>[
-            TableRow(
-              children: <Widget>[
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
                 Text(
                   widget._product.name,
                   style: Theme.of(context).textTheme.headline1,
                 ),
-                const SizedBox(),
                 Text(
                   'Rating stars',
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
               ],
             ),
-            TableRow(
-              children: <Widget>[
-                SizedBox(
-                  child: Text(
-                    'Size: 7.60 fl oz / 205 ml',
-                    style: Theme.of(context).textTheme.bodyText2,
-                  ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Size: 7.60 fl oz / 205 ml',
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
-                Container(
-                  height: 32,
-                ),
-                SizedBox(
-                  child: Text(
-                    '(123 Reviews)',
-                    style: Theme.of(context).textTheme.bodyText2,
-                  ),
+                Text(
+                  '(123 Reviews)',
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
               ],
             ),
-            TableRow(children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 40.0),
+            Padding(
+              padding: const EdgeInsets.only(top: 40.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    widget._product.currency + widget._product.price.toString(),
+                    style: Theme.of(context).textTheme.headline1,
+                  ),
+                  IconButton(
+                    onPressed: _decrement,
+                    icon: const Icon(Icons.remove),
+                  ),
+                  Text(
+                    _productCount.toString(),
+                    style: Theme.of(context).textTheme.headline1,
+                  ),
+                  IconButton(
+                    onPressed: _increment,
+                    icon: const Icon(Icons.add),
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: DevlogieColors.black,
+                      elevation: 8,
+                      shape: const StadiumBorder(),
+                      fixedSize: const Size(45, 40),
+                    ),
+                    child: const Icon(Icons.shopping_bag_outlined),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 15.0),
+              child: Expanded(
                 child: Text(
-                  widget._product.currency + widget._product.price.toString(),
-                  style: Theme.of(context).textTheme.headline1,
+                  'Some really informative descreption about this awesome product you should buy.',
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
+                  textDirection: TextDirection.ltr,
+                  textAlign: TextAlign.justify,
+                  style: Theme.of(context).textTheme.bodyText1,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 40.0),
-                child: Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        setState(() {
-                          _productCount--;
-                        });
-                      },
-                      icon: const Icon(Icons.remove),
-                    ),
-                    Text(
-                      _productCount.toString(),
-                      style: Theme.of(context).textTheme.headline1,
-                    ),
-                    IconButton(
-                      onPressed: _incrementCounter,
-                      icon: const Icon(Icons.add),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 40.0),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: DevlogieColors.black,
-                    elevation: 8,
-                    shape: const StadiumBorder(),
-                    fixedSize: const Size(45, 55),
-                  ),
-                  child: const Icon(
-                    Icons.shopping_bag_outlined,
-                    size: 33,
-                  ),
-                  onPressed: () {},
-                ),
-              ),
-            ]),
+            ),
           ],
         ),
       ),
