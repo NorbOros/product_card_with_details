@@ -25,8 +25,11 @@ class SlidingUpPanelBody extends StatelessWidget {
               builder: (BuildContext context) {
                 return Stack(
                   children: [
-                    Image.asset(
-                      'assets/images/moisturizer.jpg',
+                    Hero(
+                      tag: 'product-pic',
+                      child: Image.asset(
+                        'assets/images/moisturizer.jpg',
+                      ),
                     ),
                   ],
                 );
@@ -41,7 +44,7 @@ class SlidingUpPanelBody extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: const [
-              ProductDetailCard(title: 'Negan'),
+              ProductDetailCard(title: 'Vegan'),
               ProductDetailCard(
                 title: 'Natural',
               ),

@@ -18,39 +18,36 @@ class ProductDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Hero(
-      tag: 'product',
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios_new,
-              color: DevlogieColors.black,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+            color: DevlogieColors.black,
           ),
-          elevation: 0,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: IconButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(ShoppingBagScreen.routeName);
-                },
-                icon: const Icon(
-                  Icons.shopping_bag_outlined,
-                  color: DevlogieColors.black,
-                  size: 30,
-                ),
+        ),
+        elevation: 0,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(ShoppingBagScreen.routeName);
+              },
+              icon: const Icon(
+                Icons.shopping_bag_outlined,
+                color: DevlogieColors.black,
+                size: 30,
               ),
             ),
-          ],
-        ),
-        body: ProductSlidingUpPanel(product: _product),
+          ),
+        ],
       ),
+      body: ProductSlidingUpPanel(product: _product),
     );
   }
 }

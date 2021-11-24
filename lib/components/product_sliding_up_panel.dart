@@ -105,15 +105,13 @@ class _ProductSlidingUpPanelState extends State<ProductSlidingUpPanel> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 15.0),
-              child: Expanded(
-                child: Text(
-                  'Some really informative descreption about this awesome product you should buy.',
-                  maxLines: 4,
-                  overflow: TextOverflow.ellipsis,
-                  textDirection: TextDirection.ltr,
-                  textAlign: TextAlign.justify,
-                  style: Theme.of(context).textTheme.bodyText1,
-                ),
+              child: Text(
+                'Some really informative descreption about this awesome product you should buy.',
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
+                textDirection: TextDirection.ltr,
+                textAlign: TextAlign.justify,
+                style: Theme.of(context).textTheme.bodyText1,
               ),
             ),
           ],
