@@ -13,7 +13,7 @@ class SlidingUpPanelBody extends StatelessWidget {
       children: [
         CarouselSlider(
           options: CarouselOptions(
-            height: _size.height,
+            height: _size.height * 0.60,
             viewportFraction: 1,
             initialPage: 0,
             enableInfiniteScroll: true,
@@ -24,11 +24,13 @@ class SlidingUpPanelBody extends StatelessWidget {
             return Builder(
               builder: (BuildContext context) {
                 return Stack(
+                  fit: StackFit.expand,
                   children: [
                     Hero(
                       tag: 'product-pic',
                       child: Image.asset(
                         'assets/images/moisturizer.jpg',
+                        fit: BoxFit.fitHeight,
                       ),
                     ),
                   ],
@@ -38,19 +40,15 @@ class SlidingUpPanelBody extends StatelessWidget {
           }).toList(),
         ),
         Positioned(
-          top: _size.height * 0.42,
+          top: _size.height * 0.49,
           right: 10,
           left: 10,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: const [
               ProductDetailCard(title: 'Vegan'),
-              ProductDetailCard(
-                title: 'Natural',
-              ),
-              ProductDetailCard(
-                title: 'C+ Neutral',
-              ),
+              ProductDetailCard(title: 'Natural'),
+              ProductDetailCard(title: 'C+ Neutral'),
             ],
           ),
         )

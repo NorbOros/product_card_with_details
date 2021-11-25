@@ -13,9 +13,7 @@ class ProductCard extends StatelessWidget {
       currency: '\$',
       imageUrl: 'assets/images/moisturizer.jpg');
 
-  void addProductToShoppingBag(final Product product) {
-    
-  }
+  void addProductToShoppingBag(final Product product) {}
 
   @override
   Widget build(BuildContext context) {
@@ -56,27 +54,31 @@ class ProductCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 15.0, top: 15.0, right: 15.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        _product.currency + _product.price.toString(),
-                        style: Theme.of(context).textTheme.headline1,
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            _product.currency + _product.price.toString(),
+                            style: Theme.of(context).textTheme.headline1,
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: DevlogieColors.black,
+                              elevation: 8,
+                              shape: const StadiumBorder(),
+                              fixedSize: const Size(45, 40),
+                            ),
+                            child: const Icon(Icons.shopping_bag_outlined),
+                            onPressed: () {},
+                          ),
+                        ],
                       ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: DevlogieColors.black,
-                          elevation: 8,
-                          shape: const StadiumBorder(),
-                          fixedSize: const Size(45, 40),
-                        ),
-                        child: const Icon(Icons.shopping_bag_outlined),
-                        onPressed: () {},
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               ],

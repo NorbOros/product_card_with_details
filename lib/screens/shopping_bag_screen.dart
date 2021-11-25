@@ -1,5 +1,6 @@
 import 'package:devlogie_product_card/utils/devlogie_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class ShoppingBagScreen extends StatelessWidget {
   static const String routeName = 'shopping-bag';
@@ -22,9 +23,22 @@ class ShoppingBagScreen extends StatelessWidget {
         ),
         elevation: 0,
       ),
-      body: const Center(
-        child: Text('Shopping bag screen'),
-      ),
+      body: ListView.separated(
+          scrollDirection: Axis.vertical,
+          itemBuilder: (context, index) {
+            return ListTile(
+              autofocus: true,
+              leading: Image.asset(
+                'assets/images/moisturizer.jpg',
+              ),
+            );
+          },
+          separatorBuilder: (context, index) {
+            return Divider(
+              height: 20,
+            );
+          },
+          itemCount: 5),
     );
   }
 }
