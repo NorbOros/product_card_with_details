@@ -26,17 +26,17 @@ class ProductCard extends StatelessWidget {
         child: GestureDetector(
           onTap: () => _navigateTo(context),
           child: Card(
-            semanticContainer: true,
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            elevation: 8,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-            color: DevlogieColors.white,
+              semanticContainer: true,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              elevation: 8,
+              shape:
+                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+              color: DevlogieColors.white,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Hero(
-                  tag: 'product-pic',
+                  tag: 'product-pic-1',
                   child: Image.asset(
                     _product.imageUrl,
                     fit: BoxFit.contain,
@@ -88,7 +88,6 @@ class ProductCard extends StatelessWidget {
   }
 
   void _navigateTo(BuildContext context) {
-    // Navigator.of(context).pushNamed(routeName);
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return ProductDetailsScreen();
     }));

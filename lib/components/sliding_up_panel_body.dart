@@ -26,7 +26,7 @@ class SlidingUpPanelBody extends StatelessWidget {
                 return Stack(
                   children: [
                     Hero(
-                      tag: 'product-pic',
+                      tag: 'product-pic-1',
                       child: Image.asset(
                         'assets/images/moisturizer.jpg',
                       ),

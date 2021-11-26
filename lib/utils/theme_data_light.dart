@@ -15,6 +15,11 @@ class ThemeDataLight {
               fontSize: 20,
               fontWeight: FontWeight.w400,
             ),
+            headline2: const TextStyle(
+              color: DevlogieColors.black,
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+            ),
             bodyText1: const TextStyle(
               color: DevlogieColors.black,
               fontSize: 14,

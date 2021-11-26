@@ -1,10 +1,19 @@
+import 'package:devlogie_product_card/models/product.dart';
+import 'package:devlogie_product_card/screens/product_details_screen.dart';
 import 'package:devlogie_product_card/utils/devlogie_colors.dart';
 import 'package:flutter/material.dart';
 
 class ShoppingBagScreen extends StatelessWidget {
   static const String routeName = 'shopping-bag';
 
-  const ShoppingBagScreen({Key? key}) : super(key: key);
+  ShoppingBagScreen({Key? key}) : super(key: key);
+
+  final Product _product = Product(
+      name: 'Moisturizer',
+      description: 'Oil balancing mask with some really long description',
+      price: 11.99,
+      currency: '\$',
+      imageUrl: 'assets/images/moisturizer.jpg');
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +31,33 @@ class ShoppingBagScreen extends StatelessWidget {
         ),
         elevation: 0,
       ),
-      body: const Center(
-        child: Text('Shopping bag screen'),
-      ),
+      body: ListView.separated(
+          itemBuilder: (context, index) {
+            return FractionallySizedBox(
+              heightFactor: 0.2,
+              widthFactor: 0.6,
+              child: Card(
+                semanticContainer: true,
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                elevation: 8,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25)),
+                color: DevlogieColors.white,
+              ),
+            );
+          },
+          separatorBuilder: (context, index) {
+            return const Divider(
+              height: 10,
+            );
+          },
+          itemCount: 5),
     );
+  }
+
+  void _navigateTo(BuildContext context) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return ProductDetailsScreen();
+    }));
   }
 }
