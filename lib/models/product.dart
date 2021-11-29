@@ -1,4 +1,5 @@
 class Product {
+  final String _id;
   final String _name;
   final String _description;
   final double _price;
@@ -6,16 +7,22 @@ class Product {
   final String _imageUrl;
 
   Product(
-      {required final String name,
+      {required final String id,
+      required final String name,
       required final String description,
       required final double price,
       required final String currency,
       required final String imageUrl})
-      : _name = name,
+      : _id = id,
+        _name = name,
         _description = description,
         _price = price,
         _currency = currency,
         _imageUrl = imageUrl;
+
+  String get id {
+    return _id;
+  }
 
   String get name {
     return _name;
@@ -34,6 +41,6 @@ class Product {
   }
 
   String get currency {
-    return _currency; 
+    return _currency;
   }
 }

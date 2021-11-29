@@ -7,14 +7,9 @@ import 'package:flutter/material.dart';
 class ProductDetailsScreen extends StatelessWidget {
   static const String routeName = '/product-details-screen';
 
-  final Product _product = Product(
-      name: 'Moisturizer',
-      description: 'Oil balancing mask with some really long description',
-      price: 11.99,
-      currency: '\$',
-      imageUrl: 'assets/images/moisturizer.jpg');
+  final Product product;
 
-  ProductDetailsScreen({Key? key}) : super(key: key);
+  const ProductDetailsScreen(this.product, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +42,7 @@ class ProductDetailsScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: ProductSlidingUpPanel(product: _product),
+      body: ProductSlidingUpPanel(product: product),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:devlogie_product_card/screens/error_screen.dart';
 import 'package:devlogie_product_card/screens/home_screen.dart';
 import 'package:devlogie_product_card/screens/product_details_screen.dart';
+import 'package:devlogie_product_card/screens/rating_screen.dart';
 import 'package:devlogie_product_card/screens/shopping_bag_screen.dart';
 import 'package:devlogie_product_card/utils/theme_data_light.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +18,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Devlogie Product',
-      home: ShoppingBagScreen(),
+      home: const HomeScreen(),
       theme: ThemeDataLight.getThemeData(),
       routes: {
         HomeScreen.routeName: (context) => const HomeScreen(),
-        ProductDetailsScreen.routeName: (context) => ProductDetailsScreen(),
-        ShoppingBagScreen.routeName: (context) => ShoppingBagScreen(),
+        ProductDetailsScreen.routeName: (context) => ProductDetailsScreen(_),
+        ShoppingBagScreen.routeName: (context) => const ShoppingBagScreen(),
+        RatingScreen.routeName: (context) => const RatingScreen()
       },
       onGenerateRoute: (settings) {
         return MaterialPageRoute(builder: (ctx) => const ErrorScreen());

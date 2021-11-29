@@ -1,9 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:devlogie_product_card/components/product_detail_card.dart';
+import 'package:devlogie_product_card/models/product.dart';
 import 'package:flutter/material.dart';
 
 class SlidingUpPanelBody extends StatelessWidget {
-  const SlidingUpPanelBody({Key? key}) : super(key: key);
+  final Product product;
+  const SlidingUpPanelBody(this.product, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +28,9 @@ class SlidingUpPanelBody extends StatelessWidget {
                   fit: StackFit.expand,
                   children: [
                     Hero(
-                      tag: 'product-pic-1',
+                      tag: product.name + product.id,
                       child: Image.asset(
-                        'assets/images/moisturizer.jpg',
+                        product.imageUrl,
                         fit: BoxFit.fitHeight,
                       ),
                     ),
@@ -39,19 +40,6 @@ class SlidingUpPanelBody extends StatelessWidget {
             );
           }).toList(),
         ),
-        Positioned(
-          top: _size.height * 0.49,
-          right: 10,
-          left: 10,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
-              ProductDetailCard(title: 'Vegan'),
-              ProductDetailCard(title: 'Natural'),
-              ProductDetailCard(title: 'C+ Neutral'),
-            ],
-          ),
-        )
       ],
     );
   }

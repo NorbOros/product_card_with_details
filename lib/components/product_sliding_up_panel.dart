@@ -1,10 +1,12 @@
+import 'package:devlogie_product_card/components/product_counter.dart';
+import 'package:devlogie_product_card/components/product_rating_bar.dart';
 import 'package:devlogie_product_card/components/sliding_up_panel_body.dart';
 import 'package:devlogie_product_card/models/product.dart';
 import 'package:devlogie_product_card/utils/devlogie_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
-class ProductSlidingUpPanel extends StatefulWidget {
+class ProductSlidingUpPanel extends StatelessWidget {
   const ProductSlidingUpPanel({
     Key? key,
     required Product product,
@@ -12,27 +14,6 @@ class ProductSlidingUpPanel extends StatefulWidget {
         super(key: key);
 
   final Product _product;
-
-  @override
-  State<ProductSlidingUpPanel> createState() => _ProductSlidingUpPanelState();
-}
-
-class _ProductSlidingUpPanelState extends State<ProductSlidingUpPanel> {
-  int _productCount = 1;
-
-  void _increment() {
-    setState(() {
-      _productCount++;
-    });
-  }
-
-  void _decrement() {
-    setState(() {
-      if (_productCount > 1) {
-        _productCount--;
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,13 +28,10 @@ class _ProductSlidingUpPanelState extends State<ProductSlidingUpPanel> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  widget._product.name,
+                  _product.name,
                   style: Theme.of(context).textTheme.headline1,
                 ),
-                Text(
-                  'Rating stars',
-                  style: Theme.of(context).textTheme.bodyText1,
-                ),
+                const ProductRatingBar(),
               ],
             ),
             Row(
@@ -75,21 +53,10 @@ class _ProductSlidingUpPanelState extends State<ProductSlidingUpPanel> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    widget._product.currency + widget._product.price.toString(),
+                    _product.currency + _product.price.toString(),
                     style: Theme.of(context).textTheme.headline1,
                   ),
-                  IconButton(
-                    onPressed: _decrement,
-                    icon: const Icon(Icons.remove),
-                  ),
-                  Text(
-                    _productCount.toString(),
-                    style: Theme.of(context).textTheme.headline1,
-                  ),
-                  IconButton(
-                    onPressed: _increment,
-                    icon: const Icon(Icons.add),
-                  ),
+                  const ProductCounter(),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       primary: DevlogieColors.black,
@@ -119,7 +86,7 @@ class _ProductSlidingUpPanelState extends State<ProductSlidingUpPanel> {
       ),
       minHeight: _size.height * 0.3,
       maxHeight: _size.height * 0.5,
-      body: const SlidingUpPanelBody(),
+      body: SlidingUpPanelBody(_product),
       borderRadius: borderRadius,
     );
   }
