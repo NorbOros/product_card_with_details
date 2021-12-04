@@ -1,20 +1,12 @@
 import 'package:devlogie_product_card/components/shopping_bag_item.dart';
-import 'package:devlogie_product_card/models/product.dart';
-import 'package:devlogie_product_card/models/products.dart';
+import 'package:devlogie_product_card/providers/shopping_bag_provider.dart';
 import 'package:devlogie_product_card/utils/devlogie_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart'; 
 
-class ShoppingBagScreen extends StatefulWidget {
+class ShoppingBagScreen extends StatelessWidget {
   static const String routeName = 'shopping-bag';
-
   const ShoppingBagScreen({Key? key}) : super(key: key);
-
-  @override
-  State<ShoppingBagScreen> createState() => _ShoppingBagScreenState();
-}
-
-class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
-  final List<Product> _products = Products().products;
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +24,20 @@ class _ShoppingBagScreenState extends State<ShoppingBagScreen> {
         ),
         elevation: 0,
       ),
-      body: ListView.separated(
-          itemBuilder: (context, index) {
-            return ShoppingBagItem(_products[index]);
-          },
-          separatorBuilder: (context, index) {
-            return const Divider(
-              height: 10,
-            );
-          },
-          itemCount: _products.length),
+      body: Consumer<ShoppingBagProvider>(
+        builder: (_, _shoppingBag, child) => ListView.separated(
+            itemBuilder: (context, index) {
+              return ShoppingBagItem(
+                  shoppingBagItemEntity:
+                      _shoppingBag.shoppingBagItemList[index]);
+            },
+            separatorBuilder: (context, index) {
+              return const Divider(
+                height: 10,
+              );
+            },
+            itemCount: _shoppingBag.shoppingBagItemList.length),
+      ),
     );
   }
 }

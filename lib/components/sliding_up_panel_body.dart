@@ -28,7 +28,7 @@ class SlidingUpPanelBody extends StatelessWidget {
                   fit: StackFit.expand,
                   children: [
                     Hero(
-                      tag: product.name + product.id,
+                      tag: product.id,
                       child: Image.asset(
                         product.imageUrl,
                         fit: BoxFit.fitHeight,

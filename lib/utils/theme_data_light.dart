@@ -27,7 +27,7 @@ class ThemeDataLight {
             ),
             bodyText2: const TextStyle(
               color: DevlogieColors.grey,
-              fontSize: 12,
+              fontSize: 10,
               fontWeight: FontWeight.w200,
             ),
           ),

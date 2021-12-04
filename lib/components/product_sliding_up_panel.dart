@@ -2,22 +2,25 @@ import 'package:devlogie_product_card/components/product_counter.dart';
 import 'package:devlogie_product_card/components/product_rating_bar.dart';
 import 'package:devlogie_product_card/components/sliding_up_panel_body.dart';
 import 'package:devlogie_product_card/models/product.dart';
+import 'package:devlogie_product_card/providers/shopping_bag_provider.dart';
+import 'package:devlogie_product_card/models/shopping_bag_item_entity.dart';
 import 'package:devlogie_product_card/utils/devlogie_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class ProductSlidingUpPanel extends StatelessWidget {
-  const ProductSlidingUpPanel({
-    Key? key,
-    required Product product,
-  })  : _product = product,
-        super(key: key);
+  ProductSlidingUpPanel({Key? key}) : super(key: key);
 
-  final Product _product;
+  int _productQuantity = 1;
 
   @override
   Widget build(BuildContext context) {
+    final Product _product =
+        ModalRoute.of(context)!.settings.arguments as Product;
     final Size _size = MediaQuery.of(context).size;
+    final ShoppingBagProvider _shoppingBag =
+        Provider.of<ShoppingBagProvider>(context, listen: false);
 
     return SlidingUpPanel(
       panel: Padding(
@@ -38,7 +41,7 @@ class ProductSlidingUpPanel extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Size: 7.60 fl oz / 205 ml',
+                  _product.details,
                   style: Theme.of(context).textTheme.bodyText2,
                 ),
                 Text(
@@ -56,16 +59,19 @@ class ProductSlidingUpPanel extends StatelessWidget {
                     _product.currency + _product.price.toString(),
                     style: Theme.of(context).textTheme.headline1,
                   ),
-                  const ProductCounter(),
+                  SizedBox(
+                    width: 140,
+                    child: ProductCounter(productQuantity: productQuantity),
+                  ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       primary: DevlogieColors.black,
-                      elevation: 8,
                       shape: const StadiumBorder(),
                       fixedSize: const Size(45, 40),
                     ),
                     child: const Icon(Icons.shopping_bag_outlined),
-                    onPressed: () {},
+                    onPressed: () => addProductToShoppingBag(
+                        _shoppingBag, _product, _productQuantity),
                   ),
                 ],
               ),
@@ -73,7 +79,7 @@ class ProductSlidingUpPanel extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 15.0),
               child: Text(
-                'Some really informative descreption about this awesome product you should buy.',
+                _product.description,
                 maxLines: 4,
                 overflow: TextOverflow.ellipsis,
                 textDirection: TextDirection.ltr,
@@ -89,6 +95,16 @@ class ProductSlidingUpPanel extends StatelessWidget {
       body: SlidingUpPanelBody(_product),
       borderRadius: borderRadius,
     );
+  }
+
+  void addProductToShoppingBag(final ShoppingBagProvider shoppingBag,
+      final Product product, final int quantity) {
+    shoppingBag
+        .add(ShoppingBagItemEntity(product: product, quantity: quantity));
+  }
+
+  void productQuantity(final int productQuantity) {
+    _productQuantity = productQuantity;
   }
 }
 

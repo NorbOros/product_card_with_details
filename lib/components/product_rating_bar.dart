@@ -29,9 +29,7 @@ class _ProductRatingBarState extends State<ProductRatingBar> {
         ),
         ignoreGestures: true,
         onRatingUpdate: (rating) {
-          setState(() {
-            print(rating);
-          });
+          setState(() {});
         },
       ),
     );
