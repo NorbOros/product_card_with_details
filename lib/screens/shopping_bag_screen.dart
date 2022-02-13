@@ -2,7 +2,7 @@ import 'package:devlogie_product_card/components/shopping_bag_item.dart';
 import 'package:devlogie_product_card/providers/shopping_bag_provider.dart';
 import 'package:devlogie_product_card/utils/devlogie_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart'; 
+import 'package:provider/provider.dart';
 
 class ShoppingBagScreen extends StatelessWidget {
   static const String routeName = 'shopping-bag';
@@ -26,16 +26,11 @@ class ShoppingBagScreen extends StatelessWidget {
       ),
       body: Consumer<ShoppingBagProvider>(
         builder: (_, _shoppingBag, child) => ListView.separated(
-            itemBuilder: (context, index) {
-              return ShoppingBagItem(
-                  shoppingBagItemEntity:
-                      _shoppingBag.shoppingBagItemList[index]);
-            },
-            separatorBuilder: (context, index) {
-              return const Divider(
-                height: 10,
-              );
-            },
+            itemBuilder: (context, index) => ShoppingBagItem(
+                shoppingBagItemEntity: _shoppingBag.shoppingBagItemList[index]),
+            separatorBuilder: (context, index) => const Divider(
+                  height: 10,
+                ),
             itemCount: _shoppingBag.shoppingBagItemList.length),
       ),
     );
